@@ -231,6 +231,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightnes
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+exec synclient VertScroll=-79 synclient HorizScroll=-79
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
