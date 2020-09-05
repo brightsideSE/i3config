@@ -48,7 +48,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -57,7 +57,8 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+d exec dmenu_run
 
 # start rofi (a program launcher)
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 50 -padding 800 -opacity 85 -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
+#bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 50 -padding 800 -opacity 85 -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
+bindsym $mod+d exec rofi -show run -show-icons
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -153,7 +154,7 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 
 # assign apps to specific workspaces
 assign [class="Spotify"] $workspace10   # doesn't work due to spotty app code
-assign [class="Slack"] $workspace7
+#assign [class="Slack"] $workspace7
 
 # disable title bar
 for_window [class="^.*"] border pixel 1
@@ -161,7 +162,7 @@ new_window 1pixel
 
 # window specific actions
 for_window [class="Spotify"] move to workspace $workspace10
-for_window [class="Slack"] move to workspace $workspace7
+#for_window [class="Slack"] move to workspace $workspace7
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -215,21 +216,21 @@ bar {
 }
 
 # Lock computer
-#bindsym $mod+Shift+X exec i3lock --color 475263
+bindsym $mod+Shift+X exec i3lock-fancy
 #bindsym $mod+Shift+X exec ~/docs/scripts/i3lock.sh
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
 # bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 # bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 # increase the screen brightness
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 # decrease screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
 # Touchpad controls
 #bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
@@ -237,21 +238,22 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 exec synclient vertScrollDelta=-29
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+#bindsym XF86AudioPlay exec playerctl play
+#bindsym XF86AudioPause exec playerctl pause
+#bindsym XF86AudioNext exec playerctl next
+#bindsym XF86AudioPrev exec playerctl previous
 
 # Background set
 exec_always feh --bg-scale ~/Pictures/wallpaper.jpg
 
 # Startup
-exec --no-startup-id compton --config ~/.config/compton.conf -b
+#exec --no-startup-id compton --config ~/.config/compton.conf -b
 #exec --no-startup-id compton -f -o 0.3 --backend glx --vsync opengl -b -i 1.0 --config ~/.config/compton.conf
-#exec_always compton -f
+exec_always compton -f
 exec spotify
-exec --no-startup-id nm-applet
-exec --no-startup-id slack
+#exec --no-startup-id nm-applet
+#exec --no-startup-id slack
 exec --no-startup-id touchegg
-exec --no-startup-id xbacklight
-exec /etc/init.d/bluetooth start
+#exec --no-startup-id xbacklight
+#exec /etc/init.d/bluetooth start
+exec --no-startup-id redshift
